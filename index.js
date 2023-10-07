@@ -39,7 +39,12 @@ app.get("", async (req, res) => {
                 continue;
             }
 
-            const newTitle = descProperties["Module description"].split(":", 1) + " (" + descProperties["Type"] + ")"
+            let type = descProperties["Type"];
+            if (evt.getPropertyValue("SUMMARY").toUpperCase().includes("PROBLEM CLASS")) {
+                type = "Problem Class";
+            }
+
+            const newTitle = descProperties["Module description"].split(":", 1) + " (" + type + ")"
             const newDescription = evt.getPropertyValue("DESCRIPTION") + "\n\nTitle replaced by UoYCalendarProcessor. Original title: '" + evt.getPropertyValue("SUMMARY") + "'.";
             evt.setProperty("DESCRIPTION", newDescription);
             evt.setProperty("SUMMARY", newTitle);
