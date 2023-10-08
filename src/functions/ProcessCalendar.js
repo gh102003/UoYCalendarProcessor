@@ -1,8 +1,7 @@
 const { app } = require('@azure/functions');
-const icalendar = require("icalendar");
 
 app.http('ProcessCalendar', {
-    methods: ['GET'],
+    methods: ['GET', 'POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
         if (!request.query.timetable_url) {
