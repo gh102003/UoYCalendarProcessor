@@ -1,14 +1,17 @@
 const { app } = require('@azure/functions');
+const icalendar = require("icalendar");
 
 app.http('ProcessCalendar', {
     methods: ['GET', 'POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
-        if (!request.query.timetable_url) {
-            return { status: 400 };
+        const timetable_url = request.query.get("timetable_url");
+
+        if (!timetable_url) {
+            return { status: 400, body: "No timetable_url" };
         }
 
-        const upstreamRes = await fetch(decodeURIComponent(request.query.timetable_url))
+        const upstreamRes = await fetch(timetable_url);
         const upstreamIcal = await upstreamRes.text();
         const calendar = icalendar.parse_calendar(upstreamIcal);
 
