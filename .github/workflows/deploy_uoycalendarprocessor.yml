@@ -41,4 +41,4 @@ jobs:
           app-name: 'UoYCalendarProcessor'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B80029D673FA4FB282637417911200F7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0DA7B4014B344DD0956BC1A66128851F }}
