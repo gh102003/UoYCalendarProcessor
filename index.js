@@ -2,6 +2,7 @@ const icalendar = require("icalendar");
 const express = require("express");
 require("dotenv").config();
 
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.get("", async (req, res) => {
@@ -56,6 +57,6 @@ app.get("", async (req, res) => {
     return res.status(200).send(calendar.toString());
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("listening for requests...");
 });
